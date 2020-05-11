@@ -1,0 +1,14 @@
+name: InfiniteRocket
+version: ${project.version}
+main: infiniterocket.infiniterocket.InfiniteRocket
+api-version: 1.13
+authors: [Skiller9090]
+description: Infinite Rocket
+website: www.dohaw.net
+commands:
+  infiniterocket:
+    aliases:
+      - infr
+    description: "Give Command"
+    permission: infiniterocket.command
+
