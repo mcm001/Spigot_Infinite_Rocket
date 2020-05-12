@@ -1,6 +1,5 @@
 package infiniterocket.infiniterocket.listener;
 
-import infiniterocket.infiniterocket.InfiniteRocket;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,13 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class OnClick implements Listener {
-    private final InfiniteRocket plugin;
+public class RocketClickListener implements Listener {
+    private final Plugin plugin;
 
-    public OnClick(InfiniteRocket plugin) {
+    public RocketClickListener(Plugin plugin) {
         this.plugin = plugin;
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -33,10 +33,11 @@ public class OnClick implements Listener {
 
             // if it's the firework rocket and we're gliding
             if (meta != null && meta.getCustomModelData() == 8998621) {
-                e.setUseItemInHand(Event.Result.DENY); // cancel the interaction if we're using a infinite rocket
+                e.setUseItemInHand(Event.Result.DENY); // cancel the interaction if we're using
+                // a infinite rocket
 
                 // if we are't gliding this is an illegal move
-                if(!player.isGliding()) {
+                if (!player.isGliding()) {
                     return;
                 }
 
@@ -66,9 +67,9 @@ public class OnClick implements Listener {
                                 currentDir.getY() * 0.1D + (currentDir.getY() * 1.5D - currVel.getY()) * 0.5D,
                                 currentDir.getZ() * 0.1D + (currentDir.getZ() * 1.5D - currVel.getZ()) * 0.5D)));
 
-                        i ++;
+                        i++;
                     }
-                }.runTaskTimerAsynchronously(plugin, 0L, 1L);
+                }.runTaskTimer(plugin, 0L, 1L);
 
                 // Mooooooo
                 player.playSound(

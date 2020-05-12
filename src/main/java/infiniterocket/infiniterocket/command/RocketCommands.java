@@ -17,10 +17,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class CommandSpawn implements CommandExecutor, TabCompleter {
+public class RocketCommands implements CommandExecutor, TabCompleter {
     private InfiniteRocket ir;
 
-    public CommandSpawn(InfiniteRocket ir) {
+    public RocketCommands(InfiniteRocket ir) {
         this.ir = ir;
         ir.getCommand("infiniterocket").setExecutor(this);
         ir.getCommand("infiniterocket").setTabCompleter(this);
@@ -56,13 +56,11 @@ public class CommandSpawn implements CommandExecutor, TabCompleter {
                         }
                         ir.getLogger().info("[Infinite Rocket] Gave " + p.getName()
                                 + " an Infinite Rocket!");
-                    }
-                    else {
+                    } else {
                         sender.sendMessage("You do not have permission to give yourself an " +
                                 "infinite rocket!");
                     }
                 }
-
             } else {
                 sender.sendMessage("[" + ChatColor.DARK_AQUA + "InfiniteRocket" + ChatColor.RESET + "]" + ChatColor.COLOR_CHAR + "6" +
                         "No Player Given!");
@@ -76,7 +74,8 @@ public class CommandSpawn implements CommandExecutor, TabCompleter {
                                       String[] args) {
         if (command.getName().equalsIgnoreCase("infiniterocket")) {
             if (args.length == 1) return Collections.singletonList("give");
-            return sender.getServer().getOnlinePlayers().stream().map(CommandSender::getName).collect(Collectors.toList());
+            return sender.getServer().getOnlinePlayers().stream().map(CommandSender::getName)
+                    .collect(Collectors.toList());
         } else return null;
     }
 }
