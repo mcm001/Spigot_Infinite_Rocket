@@ -23,7 +23,7 @@ public class OnClick implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.LOWEST)
     public void OnRocketClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         ItemStack item = e.getItem();
@@ -77,9 +77,6 @@ public class OnClick implements Listener {
                         1f, 1f
                 );
             }
-        } else {
-            // don't cancel
-            e.setCancelled(false);
         }
     }
 
